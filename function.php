@@ -221,7 +221,7 @@ function validBirtday($str, $key)
 //==========================================
 //DB
 //==========================================
-//DB接続
+//DB接続関数
 function dbConnect()
 {
     $dsn = 'mysql:dbname=freeclimbing;host=localhost;charset=utf8';
