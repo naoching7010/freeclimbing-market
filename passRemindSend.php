@@ -34,7 +34,7 @@ if (!empty($_POST)) {
                     $auth_key = makeRandKey();
                     // メール送信
                     $to = $email;
-                    $from = 'naooooo@gamil.com';
+                    $from = 'naooooo@gmail.com';
                     $subject = '【パスワード再発行のご案内】| FREECLIMBING';
                     $comment = <<<EOT
 本メールアドレス宛にパスワード再発行のご依頼がありました。
