@@ -471,7 +471,7 @@ function getBrandData()
 //DBデータ取得または送信データを取得
 function getFormData($key, $method_flg = true)
 {
-
+    // POST送信かGET送信か判定
     if ($method_flg) {
         $method = $_POST;
     } else {
@@ -480,13 +480,16 @@ function getFormData($key, $method_flg = true)
     global $dbFormData;
     if (!empty($dbFormData)) {
         global $err_msg;
+        // ユーザーデータがある場合
         if (!empty($err_msg[$key])) {
+            //POSTにデータがある場合
             if (isset($method[$key])) {
                 return sanitize($method[$key]);
             } else { // こんなことはありえないが念のため記述
                 return sanitize($dbFormData[$key]);
             }
         } else {
+            //POSTにデータがあり、DBの情報と違う場合
             if (isset($method[$key]) && $method[$key] !== $dbFormData[$key]) {
                 return sanitize($method[$key]);
             } else {
