@@ -217,7 +217,7 @@ require('header.php');
                         <?php echo getErrMsg('comment'); ?>
                     </div>
                     <div class="counter">
-                        <span class="js-show-counter">0</span>/200
+                        <span class="js-show-counter"><?php echo !empty(getFormData('comment')) ? mb_strlen(str_replace("\r\n", '', reverseNl2br(getFormData('comment')))) : '0'; ?></span>/200
                     </div>
                 </div>
             </label>
