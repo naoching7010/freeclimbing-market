@@ -749,7 +749,7 @@ function pageNation($currentPageNum, $productData, $viewNum = 5)
     }
 
     if (!empty($productData['data'])) {
-        echo '<div id="pagenation">';
+        echo '<div class="pagenation">';
         echo '<ul>';
         if ($currentPageNum !== 1 && $totalPage > $viewNum) {
             echo '<li><a href="productList.php?p=1' . appendGetParam(array('p'), false) . '">&lt</a></li>';

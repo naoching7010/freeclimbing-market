@@ -83,82 +83,90 @@ if (!empty($_POST)) {
 $title = 'プロフィール編集';
 require('head.php');
 ?>
-<?php
-require('header.php');
-?>
-<div class="contents site-width">
-    <div id="regist-item">
-        <h2 class="title">プロフィール編集</h2>
-        <form action="" method="post" class="form" enctype="multipart/form-data">
-            <div class="area-msg">
-                <?php echo getErrMsg('common'); ?>
-            </div>
-            ニックネーム
-            <label for="">
-                <input type="text" name="user_name" class="<?php if(!empty(getErrMsg('user_name'))) echo 'err'; ?>" value="<?php echo getFormData('user_name'); ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('user_name'); ?>
-            </div>
-            生年月日
-            <label for="">
-                <input type="date" name="birthday" id="js-valid-birthday" class="<?php if(!empty(getErrMsg('birthday'))) echo 'err'; ?>" value="<?php echo getFormData('birthday'); ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('birthday'); ?>
-            </div>
-            郵便番号 ※ハイフンなしで入力してください
-            <label for="">
-                <input type="text" name="zip" class="<?php if(!empty(getErrMsg('zip'))) echo 'err'; ?>" value="<?php echo getFormData('zip'); ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('zip'); ?>
-            </div>
-            住所
-            <label for="">
-                <input type="text" name="addr" class="<?php if(!empty(getErrMsg('addr'))) echo 'err'; ?>" value="<?php echo getFormData('addr'); ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('addr'); ?>
-            </div>
-            電話番号 ※ハイフンなしで入力してください
-            <label for="">
-                <input type="text" name="tel" class="<?php if(!empty(getErrMsg('tel'))) echo 'err'; ?>" value="<?php echo getFormData('tel'); ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('tel'); ?>
-            </div>
-            メールアドレス <span class="msg-required">必須</span>
-            <label for="">
-                <input type="text" name="email" class="<?php if(!empty(getErrMsg('email'))) echo 'err'; ?>" value="<?php echo getFormData('email'); ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('email'); ?>
-            </div>
-            <div id="img-regist">
-                <div class="img-panel">
-                    プロフィール画像
-                    <label class="drop-container js-dropContainer <?php if(!empty(getErrMsg('pic'))) echo 'err'; ?>">
-                        <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
-                        <input type="file" name="pic" class="file-input">
-                        <img src="<?php echo getFormData('pic'); ?>" alt="" class="prev-img">
-                        画像をドラッグ&ドロップ
-                    </label>
+<body class="page-2colum page-logined">
+    <?php
+    require('header.php');
+    ?>
+    <div id="contents" class="site-width">
+        <section id="main">
+            <form action="" method="post" class="form" enctype="multipart/form-data">
+                <h2 class="page-title">プロフィール編集</h2>
+                <div class="area-msg">
+                    <?php echo getErrMsg('common'); ?>
                 </div>
-            </div>
-            <div class="area-msg">
-                <?php echo getErrMsg('pic'); ?>
-            </div>
-            <div class="btn">
-                <input type="submit" name="submit" value="編集する">
-            </div>
-            <a href="mypage.php">&lt&lt マイページへ戻る</a>
-        </form>
+
+                ニックネーム
+                <label for="" class="<?php if(!empty(getErrMsg('user_name'))) echo 'err'; ?>">
+                    <input type="text" name="user_name" value="<?php echo getFormData('user_name'); ?>">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('user_name'); ?>
+                </div>
+
+                生年月日
+                <label for="" class="<?php if(!empty(getErrMsg('birthday'))) echo 'err'; ?>">
+                    <input type="date" name="birthday" id="js-valid-birthday" value="<?php echo getFormData('birthday'); ?>">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('birthday'); ?>
+                </div>
+
+                郵便番号 ※ハイフンなしで入力してください
+                <label for="" class="<?php if(!empty(getErrMsg('zip'))) echo 'err'; ?>">
+                    <input type="text" name="zip" value="<?php echo !empty(getFormData('zip')) ? getFormData('zip') : ''; ?>">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('zip'); ?>
+                </div>
+
+                住所
+                <label for="" class="<?php if(!empty(getErrMsg('addr'))) echo 'err'; ?>">
+                    <input type="text" name="addr" value="<?php echo getFormData('addr'); ?>">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('addr'); ?>
+                </div>
+
+                電話番号 ※ハイフンなしで入力してください
+                <label for="" class="<?php if(!empty(getErrMsg('tel'))) echo 'err'; ?>">
+                    <input type="text" name="tel" value="<?php echo getFormData('tel'); ?>">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('tel'); ?>
+                </div>
+
+                メールアドレス <span class="msg-required">必須</span>
+                <label for="" class="<?php if(!empty(getErrMsg('email'))) echo 'err'; ?>">
+                    <input type="text" name="email" value="<?php echo getFormData('email'); ?>">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('email'); ?>
+                </div>
+
+                <div style="overflow: hidden;">
+                    <div class="imgDrop-container">
+                        プロフィール画像
+                        <label class="area-drop js-dropContainer <?php if(!empty(getErrMsg('pic'))) echo 'err'; ?>">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
+                            <input type="file" name="pic" class="file-input">
+                            <img src="<?php echo getFormData('pic'); ?>" alt="" class="prev-img">
+                            画像をドラッグ&ドロップ
+                        </label>
+                    </div>
+                </div>
+                <div class="area-msg">
+                    <?php echo getErrMsg('pic'); ?>
+                </div>
+                <div class="btn-container">
+                    <input class="btn" type="submit" name="submit" value="編集する">
+                </div>
+                <a href="mypage.php">&lt&lt マイページへ戻る</a>
+            </form>
+        </section>
+        <?php
+       require('sidebar.php');
+        ?>
     </div>
     <?php
-    require('sidebar.php');
+    require('footer.php')
     ?>
-</div>
-<?php
-require('footer.php')
-?>

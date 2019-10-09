@@ -93,44 +93,45 @@ debug('画面表示処理終了<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 $title = 'パスワード編集';
 require('head.php');
 ?>
-<?php
-require('header.php');
-?>
-<div class="contents site-width">
-    <section id="login">
-        <h2 class="title">パスワード変更</h2>
-        <form action="" method="post" class="form">
-            <div class="area-msg">
-                <?php echo getErrMsg('common'); ?>
-            </div>
-            古いパスワード
-            <label for="">
-                <input type="password" name="pass_old" value="<?php echo getFormData('pass_old'); ?>" class="js-form-required <?php if (!empty(getErrMsg('pass_old'))) echo 'err'; ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('pass_old'); ?>
-            </div>
-            新しいパスワード
-            <label for="">
-                <input type="password" name="pass_new" value="<?php echo getFormData('pass_new'); ?>" class="js-form-required <?php if (!empty(getErrMsg('pass_new'))) echo 'err'; ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('pass_new'); ?>
-            </div>
-            新しいパスワード（再入力）
-            <label for="">
-                <input type="password" name="pass_new_re" value="<?php echo getFormData('pass_new_re'); ?>" class="js-form-required <?php if (!empty(getErrMsg('pass_new_re'))) echo 'err'; ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('pass_new_re'); ?>
-            </div>
-            <div class="btn">
-                <input type="submit" name="submit" value="変更" class="js-disabled-submit" disabled="disabled">
-            </div>
-            <a href="mypage.php">&lt&lt マイページへ戻る</a>
-        </form>
-    </section>
-</div>
-<?php
-require('footer.php')
-?>
+    <body class="page-1colum">
+    <?php
+    require('header.php');
+    ?>
+    <div id="contents" class="site-width">
+        <section id="main">
+            <form action="" method="post" class="form">
+                <h2 class="page-title">パスワード変更</h2>
+                <div class="area-msg">
+                    <?php echo getErrMsg('common'); ?>
+                </div>
+                古いパスワード
+                <label for="" class="<?php if (!empty(getErrMsg('pass_old'))) echo 'err'; ?>">
+                    <input type="password" name="pass_old" value="<?php echo getFormData('pass_old'); ?>" class="js-form-required">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('pass_old'); ?>
+                </div>
+                新しいパスワード
+                <label for="" class="<?php if (!empty(getErrMsg('pass_new'))) echo 'err'; ?>">
+                    <input type="password" name="pass_new" value="<?php echo getFormData('pass_new'); ?>" class="js-form-required">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('pass_new'); ?>
+                </div>
+                新しいパスワード（再入力）
+                <label for="" class="<?php if (!empty(getErrMsg('pass_new_re'))) echo 'err'; ?>">
+                    <input type="password" name="pass_new_re" value="<?php echo getFormData('pass_new_re'); ?>" class="js-form-required">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('pass_new_re'); ?>
+                </div>
+                <div class="btn-container">
+                    <input type="submit" name="submit" value="変更" class="btn js-disabled-submit" disabled="disabled">
+                </div>
+                <a href="mypage.php">&lt&lt マイページへ戻る</a>
+            </form>
+        </section>
+    </div>
+    <?php
+    require('footer.php')
+    ?>

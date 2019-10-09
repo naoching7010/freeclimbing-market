@@ -10,6 +10,13 @@ p, h1, h2, h3, h4, h5, h6{
 li{
     list-style: none;
 }
+img{
+    width: 100%;
+    height: 100%;
+}
+/*========================================
+  リンク
+========================================*/
 a{
     text-decoration: none;
     color: #333;
@@ -18,6 +25,7 @@ a:hover{
     cursor: pointer;
     text-decoration: underline;
 }
+
 /*=======================================================
 ヘッダー
 =======================================================*/
@@ -26,24 +34,24 @@ header{
     border: 1px solid white;
     box-shadow: 0px 1px 10px 2px rgba(0,0,0,0.4);
 }
-#header-top{
+.header-top{
     overflow: hidden;
 }
-#header-logo{
+.logo{
     display: block;
     width: 250px;
     height: 80px;
     margin-top: 10px;
     float: left;
 }
-#header-logo a img{
-    width: 100%;
+.logo a{
+    display: block;
 }
-#header-top-right{
+.header-right{
     float: right;
     width: 65%;
 }
-.search {
+.search_keyword {
     width: 100%;
     height: 40px;
     padding: 10px 38px;
@@ -63,31 +71,34 @@ header{
     top: 33px;
     left: 18px;
 }
-#header-bottom{
+.header-bottom{
     height: 50px;
     background: #FF3333;
 }
-#header-bottom ul li a{
+.header-bottom ul li a{
     font-size: 14px;
     text-shadow: 1px 1px 0 #333;
 }
-#header-bottom ul li a:hover{
+.header-bottom ul li a:hover{
     text-decoration: none;
 }
-#header-nav-left{
+/*========================================
+  ナビゲーション
+========================================*/
+.nav-left{
     float: left;
 }
-#header-nav-right{
+.nav-right{
     float: right;
 }
-#header-nav-left > ul, #header-nav-right > ul{
+.nav-left > ul, .nav-right ul{
     height: 50px;
     margin: 0;
     margin-left:10px; 
     padding: 0;
     box-sizing: border-box;
 }
-#header-nav-left > ul > li{
+.nav-left ul li{
     float: left;
     width: 160px;
     height: 50px;
@@ -96,24 +107,21 @@ header{
     border-left: 1px solid white;
     box-sizing: border-box;
 }
-#header-nav-left ul li a{
+.nav-left ul li:last-child{
+    border-right: 1px solid white;
+}
+.nav-left ul li a{
     display: block;
     width: 100%;
     line-height: 50px;
     box-sizing: border-box;
     color: white;
 }
-#header-nav-left > ul > li:last-child{
-    border-right: 1px solid white;
-}
-/*#header-nav-left ul li:hover ul{
-    display: block;
-}*/
-#header-nav-left ul li:hover a{
+.nav-left > ul > li:hover a{
     color: #FF3333;
     background: white;
 }
-#header-nav-left ul li ul{
+.nav-left > ul > li > ul{
     display: none;
     position: absolute;
     top: 50px;
@@ -123,21 +131,21 @@ header{
     box-shadow: 1px 6px 10px 0px rgba(0,0,0,0.4);
     z-index: 2;
 }
-#header-nav-left ul li ul li a{
+.nav-left ul > li > ul > li > a{
     width: 161px;
     color: #FF3333;
     background: white;
     border-bottom: 1px solid #eee;
 }
-#header-nav-left ul li ul li a:hover{
+.nav-left ul > li > ul > li > a:hover{
     color: white;
     background: #FF3333;
     border: none;
 }
-#header-nav-right ul li{
+.nav-right ul li{
     float: right;
 }
-#header-nav-right ul li a{
+.nav-right ul li a{
     float: right;
     padding: 2px 20px;
     margin: 10px 0px;
@@ -147,55 +155,91 @@ header{
     -moz-border-radius: 5px;
     font-size: 12px;
 }
-#header-nav-right ul li:first-child a{
+.nav-right ul li:first-child a{
     border: 1px solid white;
     color: white;
 }
-#header-nav-right ul li:first-child a:hover{
+.nav-right ul li:first-child a:hover{
     background: white;
     color: #FF3333;
     transition: 0.4s;
 }
-#header-nav-right ul li:last-child a{
+.nav-right ul li:last-child a{
     background: rgb(60,179,113);
     color: white;
     border: 1px solid rgb(60,179,113);
     box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.4);
 }
-#header-nav-right ul li:last-child a:hover{
+.nav-right ul li:last-child a:hover{
     background: white;
     color: rgb(60,179,113);
     border: 1px solid rgb(60,179,113);
     box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.4);
     transition: 0.4s;
 }
+/*========================================
+  レイアウト
+========================================*/
 .site-width{
     width: 980px;
     margin: 0 auto;
 }
-.contents{
+#contents{
     overflow: hidden;
+    margin: 20px auto; 
+}
+#main{
     margin-top: 80px;
+    box-sizing: border-box;
+}
+.page-1colum #main {
+    width: 100%;
+}
+.page-2colum #main {
+    width: 760px;
+    float: left;
+}
+.page-logined #main{
+    border: 8px solid #eee;
+    padding: 20px;
 }
 /*========================================================
 サイドバー
 ==========================================================*/
 .sidebar{
-    width: 20%;
+    width: 200px;
     height: 600px;
     float: left;
     background: #eee;
     padding: 30px 20px;
-    margin: 0;
+    margin-top: 80px;
+    margin-right: 20px;
     box-sizing: border-box;
     position: relative;
 }
-.side-title{
+.sidebar-title{
     display: block;
     font-size: 14px;
     font-family: 'Montserrat', sans-serif;
     padding-left: 5px;
     margin-bottom: 5px;
+}
+.sidebar-selectbox{
+    position: relative;
+    margin-bottom: 20px;
+}
+.sidebar-selectbox .select-icon:after{
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 9px solid #333;
+    border-left: 6px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-right: 6px solid transparent;  
+    top: 16px;
+    right: 10px;
+    position: absolute;
+    pointer-events: none;
 }
 .sidebar-select{
     display: block;
@@ -219,22 +263,8 @@ header{
 .sidebar li:first-child{
     margin-top: 0;
 }
-.sidebar .selectbox{
-    position: relative;
-    margin-bottom: 20px;
-}
-.selectbox .select-icon:after{
-    content: '';
-    width: 0;
-    height: 0;
-    border-top: 9px solid #333;
-    border-left: 6px solid transparent;
-    border-bottom: 9px solid transparent;
-    border-right: 6px solid transparent;  
-    top: 16px;
-    right: 10px;
-    position: absolute;
-    pointer-events: none;
+.page-logined .sidebar{
+    margin: 80px 0 0 20px;
 }
 /*=========================================================
 バナー画像
@@ -298,23 +328,17 @@ header{
     font-size: 0.8em
 }
 /*=========================================================
-メインコンテンツ
+コンテンツ
 ==========================================================*/
-#productlist-main{
-    float: left;
-    width: 75%;
-    margin-left: 30px;
-}
-.title{
+.page-title{
     padding: 40px 0;
     color: #333;
     font-size: 30px;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    border-bottom: 2px solid #eee;
 }
-#search-title{
-    width: 720px;
+.search-title{
+    width: 100%;
     height: 50px;
     padding: 0 10px;
     margin-bottom: 20px;
@@ -323,31 +347,42 @@ header{
     box-sizing: border-box;
     overflow: hidden;
 }
-#search-left{
+.search-left{
     float: left;
 }
-#search-right{
+.search-right{
     float: right;
 }
-.item-list{
+.product_new{
     width: 100%;
     overflow: hidden;
     margin-bottom: 20px;
 }
-.item-title{
-    text-align: center;
+.title-container{
     margin-bottom: 10px;
 }
-.item-title h2{
+.product_new .title-container{
+    text-align: center;
+}
+.title{
     display: inline-block;
     color: #333;
     font-family: 'Montserrat', sans-serif;
     box-shadow: 0px -6px 5px -5px  #FF3333 inset,0px 8px 4px -8px  #FF3333;
 }
-.newitem-panel{
+.list{
+    margin: 30px 0;
+}
+.list .panel{
+    height: 140px;
+}
+.panel-list{
     overflow: hidden;
 }
-.newitem-panel a{
+.panel:hover{
+    opacity: 0.7;
+}
+.page-1colum .panel{
     display: block;
     width: 20%;
     padding-right: 15px;
@@ -356,7 +391,7 @@ header{
     float: left;
     box-sizing: border-box;
 }
-.item-list > a{
+.page-2colum .panel{
     display: block;
     width: 25%;
     padding-right: 15px;
@@ -364,17 +399,10 @@ header{
     float: left;
     box-sizing: border-box;
 }
-.item-list a:hover{
-    opacity: 0.7;
-}
 .panel-head{
     width: 100%;
     height: 140px;
     box-shadow: 2px 0px 5px 0 rgba(0,0,0,0.4);
-}
-.panel-head img{
-    width: 100%;
-    height: 100%;
 }
 .panel-body{
     height: 100px;
@@ -385,14 +413,7 @@ header{
 .panel-body .fa-heart{
     color :rgb(255, 167, 203);
 }
-#product-detail{
-    width: 800px;
-    margin: 0 auto;
-}
-#product-detail-topwrapper{
-    overflow: hidden;
-}
-#product-title{
+.product-title{
     height: 60px;
     padding-left: 10px;
     margin-bottom: 30px;
@@ -401,57 +422,43 @@ header{
     font-weight: bold;
     line-height: 60px;
 }
-#product-img{
+.product-img-container{
     width: 50%;
     float: left;
 }
-#main-img{
+.img-main{
     width: 100%;
     height: 352px;
 }
-#main-img img{
-    width: 100%;
-    height: 100%;
-}
-#sub-img{
+.img-sub{
     overflow: hidden;
     margin-top: 20px;
 }
-#sub-img .img-panel{
-    float: left;
+.img-sub .panel{
     width: 33.33333333%;
     height: 100px;
     padding-right: 10px;
-    box-sizing: border-box;
 }
-.img-panel img{
-    width: 100%;
-    height: 100%;
-}
-.mypage-contents > a:hover{
-    text-decoration: none;
-}
-#product-info{
+.product-info-container{
     float: right;
     margin-left: 30px;
 }
-#product-info table{
+.product-info-container table{
     border-collapse: collapse;
     border-spacing: 0;
 }
-#product-info th{
+.product-info-container th, .product-info-container td{
+    border: 1px solid #ddd;
+}
+.product-info-container th{
     text-align: left;
     background: #eee;
-}
-#product-info th{
     padding: 30px 30px 30px 10px;
-    border: 1px solid #ddd;
 }
-#product-info td{
+.product-info-container td{
     padding: 30px 80px 30px 10px;
-    border: 1px solid #ddd;
 }
-#product-discription{
+.productDetail-comment{
     min-height: 200px;
     padding: 20px;
     margin-top: 50px;
@@ -459,12 +466,10 @@ header{
     background: #eee;
     clear: left;
 }
-#product-buy{
+.product-buy{
     margin-bottom: 30px;
-    
-
 }
-#product-buy p{
+.product-buy .item-left{
     float: left;
     padding-top: 30px;
     padding-bottom: 30px;
@@ -472,24 +477,32 @@ header{
     font-size: 30px;
     font-weight: bold;
 }
-#like{
+.item-right{
     position: relative;
     float: right;
     margin-top: 18px;
     margin-right: 10px;
     color: #eee;
 }
-#like .fa-heart{
+.item-right .fa-heart{
     position: absolute;
     left: -50px;
 }
-#like .fav{
+.item-right .fav{
     cursor: pointer;
     z-index: 2;
 }
-#like .fav.active{
+.item-right .fav.active{
     color :rgb(255, 167, 203);
     animation: favPushAnimation .2s ease-out;
+}
+.item-right .fav2{
+    cursor: pointer;
+    z-index: 1;
+}
+.item-right .fav2.active{
+    color :rgb(255, 167, 203);
+    animation: favMoveAnimation 1s ease-out;
 }
 @keyframes favPushAnimation{
     0%{
@@ -498,14 +511,6 @@ header{
     100%{
         transform: scale(1);
     }
-}
-#like .fav2{
-    cursor: pointer;
-    z-index: 1;
-}
-#like .fav2.active{
-    color :rgb(255, 167, 203);
-    animation: favMoveAnimation 1s ease-out;
 }
 @keyframes favMoveAnimation{
     0%{
@@ -526,52 +531,23 @@ header{
         opacity: 0;
     }
 }
-
-.title-sub{
-    display: inline-block;
-    margin-bottom: 10px;
-    color: #333;
-    box-shadow: 0px -6px 5px -5px  #FF3333 inset,0px 8px 4px -8px  #FF3333;
-}
-.mypage-contents{
-    padding: 30px 20px;
-}
-#buy-itemList, #like-itemList{
-    overflow: hidden;
-    padding-bottom: 50px;
-}
-.mypage-contents table{
+.list-table table{
     width: 100%;
     background: #eee;
     margin-bottom: 50px;
     table-layout: fixed;
 }
-.mypage-contents table th, .mypage-contents table, td{
+.list-table table th, .list-table table, td{
     height: 35px;
     border: 2px solid #ddd;
 }
-.mypage-contents table th{
+.list-table table th{
     text-align: left;
 }
-.mypage-contents table tbody tr:hover{
+.list-table table tbody tr:hover{
     cursor: pointer;
     color: #4EA1E8;
     text-decoration: none;
-}
-#bord-contents{
-    padding-top: 30px;
-}
-#trade-info{
-    overflow: hidden;
-    padding: 20px;
-    background: #eee;
-    border: 2px solid #ddd;
-}
-#tradePartner{
-    float: left;
-}
-#tradeProduct{
-    float: right;
 }
 .trade-title{
     width: 80px;
@@ -579,30 +555,43 @@ header{
     font-size: 20px;
     box-shadow: 0px -6px 5px -5px  #FF3333 inset,0px 8px 4px -8px  #FF3333;
 }
-#tradePartner-img{
+.trade-info{
+    overflow: hidden;
+    padding: 20px;
+    background: #eee;
+    border: 2px solid #ddd;
+}
+.trade-partner{
+    float: left;
+}
+.trade-product{
+    float: right;
+}
+.avatar-img{
     float: left;
     width: 120px;
+    height: 120px;
 }
-#tradeProduct-img{
-    float: left;
-    width: 150px;
-}
-#tradePartner-img img, #tradeProduct img{
-    width: 100%;
-}
-#tradePartner-img img{
+.avatar-img .avatar {
     border-radius: 120px;
     -webkit-border-radius: 120px;
     -moz-border-radius: 120px;
 }
-#tradePartner-info, #tradeProduct-info {
+.product-img{
+    float: left;
+    width: 150px;
+}
+.product-img .product{
+    width: 100%;
+}
+.avatar-info, .product-info {
     float: left;
     margin-left: 20px;
 }
-#bord-msg, #trade-comment{
+.msg{
     overflow: scroll;
     height: 500px;
-    padding: 30px;
+    padding: 30px 80px;;
     margin: 30px 0;
     background: #eee;
     border: 3px solid #ddd;
@@ -642,13 +631,13 @@ header{
     box-sizing: border-box;
     position: relative;
 }
-.msg-left > p{
+.msg-left  p{
     float: left;
     margin: 0;
     margin-left: 30px;
     background: #FFCC99;
 }
-.msg-left > p::before{
+.msg-left  p::before{
     content: '';
     position: absolute;
     display: block;
@@ -665,7 +654,7 @@ header{
     border-right: 15px solid transparent;
     border-bottom: 15px solid #FFCC99;;
 }
-.msg-left > p::after{
+.msg-left p::after{
     content: '';
     position: absolute;
     display: block;
@@ -682,13 +671,18 @@ header{
     border-right: 30px solid transparent;
     border-bottom: 30px solid #eee;
 }
-.msg-right > p{
+.msg-left span{
+    position: absolute;
+    top: 3px;
+    left: 85px;
+}
+.msg-right p{
     float: right;
     margin-top: 16px;
     margin-right: 30px;
     background: #87CEEB;
 }
-.msg-right > p::before{
+.msg-right p::before{
     content: '';
     position: absolute;
     display: block;
@@ -705,7 +699,7 @@ header{
     border-right: 15px solid #87CEEB;
     border-bottom: 15px solid transparent;
 }
-.msg-right > p::after{
+.msg-right p::after{
     content: '';
     position: absolute;
     display: block;
@@ -727,11 +721,6 @@ header{
     right: 85px;
     top: -5px;
 
-}
-.msg-left span{
-    position: absolute;
-    top: 3px;
-    left: 85px;
 }
 .purchasePanel-head{
     background: #eee;
@@ -762,9 +751,6 @@ header{
     float: left;
     width: 150px;
 }
-.purchasePanel-img img{
-    width: 100%;
-}
 .purchasePanel-body p{
     float: left;
     margin-left: 30px;
@@ -775,19 +761,19 @@ header{
 /*==================================================================
 ページネーション
 ====================================================================*/
-#pagenation{
+.pagenation{
     text-align: center;
 }
-#pagenation ul{
+.pagenation ul{
     display: inline-block;
     padding: 0;
     margin: 0;
     overflow: hidden;
 }
-#pagenation ul li{
+.pagenation ul li{
     float: left;
 }
-#pagenation ul li a{
+.pagenation ul li a{
     width: 40px;
     height: 40px;
     display: block;
@@ -802,7 +788,7 @@ header{
     -webkit-border-radius: 40px;
     -moz-border-radius: 40px;
 }
-#pagenation ul li a:hover{
+.pagenation ul li a:hover{
     color: white;
     background: #EA352D;
     text-decoration: none;
@@ -810,7 +796,7 @@ header{
     text-shadow: 1px 1px 0 #333;
     transition: 0.4s;
 }
-#pagenation ul li a.active{
+.pagenation ul li a.active{
     color: white;
     background: #EA352D;
     border: 2px solid #FF3333;
@@ -827,25 +813,34 @@ label{
     margin-bottom: 15px;
     overflow: hidden;
 }
-#login, #signup, #withdraw{
-    width: 50%;
-    margin: 0 auto;
-    border: 8px solid #eee;
-}
-.form{
-    padding: 30px;
-    overflow: hidden;
+label.err input, label.err select{
+    background: #f7dcd9;
 }
 input:focus, select:focus, textarea:focus{
     outline: none;
     border: 2px solid #76c2e6 !important;
 }
-input[type="text"], input[type="password"]{
+input[type="text"], input[type="password"],textarea, select{
     width: 100%;
     height: 44px;
     padding-left: 5px;
     font-size: 18px;
     box-sizing: border-box;
+    border: 2px solid #eee;
+}
+textarea{
+    height: 80px;
+}
+select{
+    height: 60px;
+    padding: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+input[type="submit"]:hover{
+    cursor: pointer;
 }
 input[type="date"]{
     width: 200px;
@@ -854,29 +849,37 @@ input[type="date"]{
     border: 1px solid #eee;
 }
 input[type="checkbox"]{
-    width: 15px;
-    height: 15px;
-    margin-top: 0;
+    width: 18px;
+    height: 18px;
+    background: #f6f5f5;
     vertical-align: middle;
-}
+  }
 input[type="checkbox"]:hover{
     cursor: pointer;
 }
-#regist-item, #mypage-wrapper{
-    width: 70%;
-    float:left;
-    margin-right: 40px;
+.form-container {
+    margin: 0 auto;
+}
+.form{
+    margin: 0 auto;
+    padding: 30px;
+    width: 400px;
     border: 8px solid #eee;
 }
-#regist-item .img-panel, #mypage-wrapper .img-panel{
+.page-logined .form{
+    width: 600px;
+    border: none;
+}
+.page-productDetail .form{
+    width: 50%;
+    border: none;
+}
+
+.form .imgDrop-container{
     float: left;
     width: 33.33333333%;
     padding-right: 10px;
     box-sizing: border-box;
-}
-#mypage-wrapper .img-panel{
-    height: 140px;
-    margin-top: 20px;
 }
 .msg-required{
     color: white;
@@ -888,48 +891,13 @@ input[type="checkbox"]:hover{
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
 }
-#regist-item textarea{
-    width: 100%;
-    height: 80px;
-    font-size: 18px;
-    border: 2px solid #eee;
-    box-sizing: border-box;
-}
-#regist-item input[type="text"], #regist-item input[type="password"]{
-    height: 50px;
-    border: 2px solid #eee;
-}
-#regist-item .selectbox{
+.selectbox{
     position: relative;
 }
-#regist-item .selectbox .select-icon:after{
+.selectbox .select-icon:after{
     top: 25px;
 }
-#regist-item select{
-    width: 100%;
-    height: 60px;
-    padding: 10px;
-    background: white;
-    font-size: 16px;
-    border: 2px solid #eee;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    cursor: pointer;
-}
-#comment-msgArea{
-    overflow: hidden;
-}
-#comment-msgArea .area-msg{
-    float: left;
-}
-#comment-msgArea .counter{
-    float: right;
-}
-#img-regist{
-    overflow: hidden;
-}
-.drop-container{
+.area-drop{
     height: 140px;
     background: #eee;
     font-size: 12px;
@@ -946,13 +914,6 @@ input[type="checkbox"]:hover{
     left: 0;
     z-index: 2;
     opacity: 0;
-}
-.drop-container .prev-img{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
 }
 .send-msg textarea{
     width: 100%;
@@ -971,11 +932,11 @@ input[type="checkbox"]:hover{
 /*===================================================================
 ボタン
 ====================================================================*/
-.btn{
+.btn-container{
     margin-top: 20px;
     margin-bottom: 50px;
 }
-.btn input[type="submit"]{
+.btn{
     width: 100%;
     height: 50px;
     color: white;
@@ -983,12 +944,9 @@ input[type="checkbox"]:hover{
     text-shadow: 1px 1px 0 #333;
     background: #FF3333;
 }
-.btn input[type="submit"]:disabled{
+.btn:disabled{
     background: #AAAAAA;
     cursor: not-allowed;
-}
-input[type="submit"]:hover{
-    cursor: pointer;
 }
 /*===================================================================
 エラーメッセージ
@@ -1029,7 +987,7 @@ input[type="submit"]:hover{
 #footer{
     width: 100%;
     height: 60px;
-    margin-top: 100px;
+    margin-top: 80px;
     color: white;
     background: #EA352D;
     text-align: center;

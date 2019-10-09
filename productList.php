@@ -30,47 +30,49 @@ if ((empty($ProductData['data']) && $ProductData['totalPage'] < $currentPageNum)
 $title = '商品一覧';
 require('head.php');
 ?>
-<?php
-require('header.php');
-?>
-<div class="contents site-width">
+<body class="page-2colum">
     <?php
-    require('sidebar.php');
+    require('header.php');
     ?>
-    <section id="productlist-main">
-        <div id="search-title">
-            <div id="search-left">
-                <?php if (!empty($ProductData['data'])) { ?>
-                    <span id="totla-num"><?php echo sanitize($ProductData['total']); ?></span>件の商品が見つかりました
-                <?php } else { ?>
-                    商品が出品されていません
-                <?php } ?>
-            </div>
-            <div id="search-right">
-                <?php if (!empty($ProductData['data'])) { ?>
-                    <span class="num"><?php echo sanitize($currentPageMinNum + 1); ?></span> - <span class="num"><?php echo ($currentPageMinNum + count($ProductData['data'])); ?></-span>件 / <span class="num"><?php echo sanitize($ProductData['total']); ?></span>件中
+    <div id="contents" class="site-width">
+        <?php
+        require('sidebar.php');
+        ?>
+        <section id="main">
+            <div class="search-title">
+                <div class="search-left">
+                    <?php if (!empty($ProductData['data'])) { ?>
+                        <span class="total-num"><?php echo sanitize($ProductData['total']); ?></span>件の商品が見つかりました
+                    <?php } else { ?>
+                        商品が出品されていません
                     <?php } ?>
+                </div>
+                <div class="search-right">
+                    <?php if (!empty($ProductData['data'])) { ?>
+                        <span class="num"><?php echo sanitize($currentPageMinNum + 1); ?></span> - <span class="num"><?php echo ($currentPageMinNum + count($ProductData['data'])); ?></-span>件 / <span class="num"><?php echo sanitize($ProductData['total']); ?></span>件中
+                    <?php } ?>
+                </div>
             </div>
-        </div>
-        <div class="item-list">
-            <?php foreach ($ProductData['data'] as $key => $val) : ?>
-                <a href="productDetail.php?p_id=<?php echo $val['id']; ?>">
-                    <div class="panel-head">
-                        <img src="<?php echo sanitize(showImg($val['pic1'])); ?>" alt="">
-                    </div>
-                    <div class="panel-body">
-                        <?php echo sanitize($val['name']);
-                            echo '<br>';
-                            echo '￥' . number_format(sanitize($val['price']));
-                            echo '<br>';
-                            echo '<i class="fas fa-heart"></i> ' . countLike($val['id']);
-                            ?>
-
-                    </div>
-                </a>
-            <?php endforeach; ?>
-        </div>
-        <?php pageNation($currentPageNum, $ProductData); ?>
-    </section>
-</div>
-<?php require('footer.php'); ?>
+            <div class="panel-list">
+                <?php foreach ($ProductData['data'] as $key => $val) : ?>
+                    <a href="productDetail.php?p_id=<?php echo $val['id']; ?>" class="panel">
+                        <div class="panel-head">
+                            <img src="<?php echo sanitize(showImg($val['pic1'])); ?>" alt="">
+                        </div>
+                        <div class="panel-body">
+                            <?php echo sanitize($val['name']);
+                                echo '<br>';
+                                echo '￥' . number_format(sanitize($val['price']));
+                                echo '<br>';
+                                echo '<i class="fas fa-heart"></i> ' . countLike($val['id']);
+                                ?>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+            <?php pageNation($currentPageNum, $ProductData); ?>
+        </section>
+    </div>
+    <?php 
+    require('footer.php'); 
+    ?>

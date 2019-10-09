@@ -97,38 +97,39 @@ debug('画面表示処理終了<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 $title = 'パスワード再発行';
 require('head.php');
 ?>
-<?php
-require('header.php');
-?>
-<p class="msg-success js-fade-msg" style="display: none;">
+    <body class="page-1colum">
     <?php
-    getSessionFlash('msg_success');
+    require('header.php');
     ?>
-</p>
-<div class="contents site-width">
-    <section id="login">
-        <h2 class="title">パスワード再発行</h2>
-        <form action="" method="post" class="form">
-            <p>
-                受け取られた8桁の認証キーをご入力ください。
-            </p>
-            <div class="area-msg">
-                <?php echo getErrMsg('common'); ?>
-            </div>
-            認証キー
-            <label for="">
-                <input type="text" name="auth_key" value="<?php echo getFormData('auth_key'); ?>" class="js-form-required <?php if (!empty(getErrMsg('auth_key'))) echo 'err'; ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('auth_key'); ?>
-            </div>
-            <div class="btn">
-                <input type="submit" name="submit" value="パスワードを再発行する" class="js-disabled-submit" disabled="disabled">
-            </div>
-            <a href="passRemindSend.php">&lt&lt 認証キー発行画面へ戻る</a>
-        </form>
-    </section>
-</div>
-<?php
-require('footer.php')
-?>
+    <p class="msg-success js-fade-msg" style="display: none;">
+        <?php
+        getSessionFlash('msg_success');
+        ?>
+    </p>
+    <div id="contents" class="site-width">
+        <section id="main">
+            <form action="" method="post" class="form">
+                <h2 class="page-title">パスワード再発行</h2>
+                <p>
+                    受け取られた8桁の認証キーをご入力ください。
+                </p>
+                <div class="area-msg">
+                    <?php echo getErrMsg('common'); ?>
+                </div>
+                認証キー
+                <label for="" class="<?php if (!empty(getErrMsg('auth_key'))) echo 'err'; ?>">
+                    <input type="text" name="auth_key" value="<?php echo getFormData('auth_key'); ?>" class="js-form-required">
+                </label>
+                <div class="area-msg">
+                        <?php echo getErrMsg('auth_key'); ?>
+                </div>
+                <div class="btn-container">
+                    <input type="submit" name="submit" value="パスワードを再発行する" class="btn js-disabled-submit" disabled="disabled">
+                </div>
+                <a href="passRemindSend.php">&lt&lt 認証キー発行画面へ戻る</a>
+            </form>
+        </section>
+    </div>
+    <?php
+    require('footer.php')
+    ?>

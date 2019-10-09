@@ -73,86 +73,87 @@ debug('画面表示処理終了<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 $title = '掲示板';
 require('head.php');
 ?>
+<body class="page-1colum">
+    <?php
+    require('header.php');
+    ?>
+    <p class="msg-success js-fade-msg" style="display: none;">
         <?php
-        require('header.php');
+            getSessionFlash('msg_success');
         ?>
-        <p class="msg-success js-fade-msg" style="display: none;">
-            <?php
-                getSessionFlash('msg_success');
-            ?>
-        </p>
-        <div class="contents site-width">
-            <div id="bord">
-                <h1 class="title" style="border: none;">掲示板</h1>
-                <div id="trade-info">
-                    <div id="tradePartner">
-                        <h2 class="trade-title">取引相手</h2>
-                        <div id="tradePartner-img">
-                            <img src="<?php echo showProfImg(sanitize($partnerUserData['pic'])); ?>" alt="">
-                        </div>
-                        <div id="tradePartner-info">
-                            <?php 
-                                echo sanitize($partnerUserData['user_name']).'　'.sanitize(culcAge($partnerUserData['birthday'])).'歳<br>';
-                                if($partnerUserData['zip']){
-                                    echo '〒'.substr(sanitize($partnerUserData['zip']), 0, 3).'-'.substr(sanitize($partnerUserData['zip']), 3).'<br>';
-                                }
-                                echo '住所：'.sanitize($partnerUserData['addr']).'<br>';
-                                echo 'TEL：'.sanitize($partnerUserData['tel']);
-                            ?> 
-                        </div>
+    </p>
+    <div id="contents" class="site-width">
+        <h1 class="page-title" style="border: none;">掲示板</h1>
+        <section id="main">
+            <div class="trade-info">
+                <div class="trade-partner">
+                    <h2 class="trade-title">取引相手</h2>
+                    <div class="avatar-img">
+                        <img src="<?php echo showProfImg(sanitize($partnerUserData['pic'])); ?>" alt="" class="avatar">
                     </div>
-                    <div id="tradeProduct">
+                    <div class="avatar-info">
+                        <?php 
+                        echo sanitize($partnerUserData['user_name']).'　'.sanitize(culcAge($partnerUserData['birthday'])).'歳<br>';
+                        if($partnerUserData['zip']){
+                        echo '〒'.substr(sanitize($partnerUserData['zip']), 0, 3).'-'.substr(sanitize($partnerUserData['zip']), 3).'<br>';
+                        }
+                        echo '住所：'.sanitize($partnerUserData['addr']).'<br>';
+                        echo 'TEL：'.sanitize($partnerUserData['tel']);
+                        ?> 
+                    </div>
+                    <div class="trade-product">
                         <h2 class="trade-title">取引商品</h2>
-                        <div id="tradeProduct-img">
-                            <img src="<?php echo sanitize($productData['pic1']); ?>" alt="">
+                        <div class="product-img">
+                            <img class="product" src="<?php echo sanitize($productData['pic1']); ?>" alt="">
                         </div>
-                        <div id="tradeProduct-info">
+                        <div class="product-info">
                             <?php 
-                                echo sanitize($productData['p_name']).'<br>';
-                                echo '￥'.number_format(sanitize($productData['price'])).'<br>';
-                                echo '送料：';
-                                echo judgPostAge(sanitize($productData['postage_flg'])).'<br>';
-                                echo '取引開始日：'.date('Y-m-d', strtotime(sanitize($bordData['create_date'])));
+                            echo sanitize($productData['p_name']).'<br>';
+                            echo '￥'.number_format(sanitize($productData['price'])).'<br>';
+                            echo '送料：';
+                            echo judgPostAge(sanitize($productData['postage_flg'])).'<br>';
+                            echo '取引開始日：'.date('Y-m-d', strtotime(sanitize($bordData['create_date'])));
                             ?>
                         </div>
                     </div>
                 </div>
-                <div id="bord-contents">
-                    <div id="bord-msg">
+                <div class="msg-container">
+                    <div class="msg">
                         <?php 
                         if(!empty($msgData)){
                             foreach ($msgData as $key => $val) {
                                 if($val['from_user'] !== $_SESSION['user_id']){
                         ?>
-                                <div class="msg-left">
-                                    <img src="<?php echo showProfImg(sanitize($partnerUserData['pic'])); ?>" alt="">
-                                    <p>
-                                        <?php echo sanitize($val['msg']); ?>
-                                    </p>
-                                </div>
+                            <div class="msg-left">
+                                <img src="<?php echo showProfImg(sanitize($partnerUserData['pic'])); ?>" alt="">
+                                <p>
+                                    <?php echo sanitize($val['msg']); ?>
+                                </p>
+                            </div>
                         <?php }else{ ?>
-                                <div class="msg-right">
-                                    <img src="<?php echo showProfImg(sanitize($myUserData['pic'])); ?>" alt="">
-                                    <p>
-                                        <?php echo sanitize($val['msg']); ?>
-                                    </p>
-                                </div>
-                            <?php }
+                            <div class="msg-right">
+                                <img src="<?php echo showProfImg(sanitize($myUserData['pic'])); ?>" alt="">
+                                <p>
+                                    <?php echo sanitize($val['msg']); ?>
+                                </p>
+                            </div>
+                        <?php }
                                 }
-                            }else{ ?>
-                                <div>
-                                    <p style="text-align: center; margin-top: 50px; font-size: 20px;">メッセージがありません</p>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    <form action="" method="post" class="send-msg btn">
+                        }else{ ?>
+                            <div>
+                                <p style="text-align: center; margin-top: 50px; font-size: 20px;">メッセージがありません</p>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <form action="" method="post" class="send-msg btn-container">
                         <textarea name="msg" class="auto-resize js-form-required" placeholder="メッセージを入力"></textarea>
-                        <input type="submit" name="submit" value="送信" style="width: 150px; float: right;" class="js-disabled-submit" disabled="disabled">
+                        <input type="submit" name="submit" value="送信" style="width: 150px; float: right;" class="btn js-disabled-submit" disabled="disabled">
                     </form>
                     <a href="mypage.html">&lt マイページへ戻る</a>
                 </div>
             </div>
-        </div>
-        <?php
-        require('footer.php')
-        ?>
+        </section>
+    </div>
+    <?php
+    require('footer.php')
+    ?>

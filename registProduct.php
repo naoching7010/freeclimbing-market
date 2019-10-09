@@ -151,139 +151,146 @@ debug('画面表示処理終了<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 $title = '商品登録';
 require('head.php');
 ?>
-<?php
-require('header.php');
-?>
-<div class="contents site-width">
-    <div id="regist-item">
-        <h2 class="title"><?php echo (!empty($editFlg)) ? '商品編集' : '商品登録'; ?></h2>
-        <form action="" method="post" class="form" enctype="multipart/form-data">
-            <div class="area-msg">
-                <?php echo getErrMsg('common') ?>
-            </div>
-            商品名 <span class="msg-required">必須</span>
-            <label for="">
-                <input type="text" name="p_name" class="<?php if(!empty(getErrMsg('name'))) echo 'err'; ?>" value="<?php echo getFormData('p_name'); ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('name'); ?>
-            </div>
-            カテゴリー <span class="msg-required">必須</span>
-            <label class="selectbox" for="">
-                <span class="select-icon"></span>
-                <select name="category_id" id="">
-                    <option value="0" <?php if (getFormData('category_id') == 0) echo 'selected'; ?>>
-                        選択してください
-                    </option>
-                    <?php foreach ($categoryData as $key => $value) : ?>
-                        <option value="<?php echo $value['id']; ?>" <?php if (getFormData('category_id') == $value['id']) echo 'selected'; ?>>
-                            <?php echo $value['name']; ?>
+<body class="page-2colum page-logined">
+    <?php
+    require('header.php');
+    ?>
+    <div id="contents" class="site-width">
+        <section id="main">
+            <form action="" method="post" class="form" enctype="multipart/form-data">
+                <h2 class="page-title"><?php echo (!empty($editFlg)) ? '商品編集' : '商品登録'; ?></h2>
+                <div class="area-msg">
+                    <?php echo getErrMsg('common') ?>
+                </div>
+
+                商品名 <span class="msg-required">必須</span>
+                <label for="" class="<?php if(!empty(getErrMsg('name'))) echo 'err'; ?>">
+                    <input type="text" name="p_name" value="<?php echo getFormData('p_name'); ?>">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('name'); ?>
+                </div>
+
+                カテゴリー <span class="msg-required">必須</span>
+                <label class="selectbox <?php if(!empty(getErrMsg('category'))) echo 'err'; ?>" for="">
+                    <span class="select-icon"></span>
+                    <select name="category_id" id="">
+                        <option value="0" <?php if (getFormData('category_id') == 0) echo 'selected'; ?>>
+                            選択してください
                         </option>
-                    <?php endforeach; ?>
-                </select>
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('category'); ?>
-            </div>
-            ブランド <span class="msg-required">必須</span>
-            <label class="selectbox" for="">
-                <span class="select-icon"></span>
-                <select name="brand_id" id="">
-                    <option value="0" <?php if (getFormData('brand_id') == 0) echo 'selected'; ?>>
-                        選択してください
-                    </option>
-                    <?php foreach ($brandData as $key => $value) : ?>
-                        <option value="<?php echo $value['id']; ?>" <?php if (getFormData('brand_id') == $value['id']) echo 'selected'; ?>>
-                            <?php echo $value['name']; ?>
+                        <?php foreach ($categoryData as $key => $value) : ?>
+                            <option value="<?php echo $value['id']; ?>" <?php if (getFormData('category_id') == $value['id']) echo 'selected'; ?>>
+                                <?php echo $value['name']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('category'); ?>
+                </div>
+
+                ブランド <span class="msg-required">必須</span>
+                <label class="selectbox <?php if(!empty(getErrMsg('brand'))) echo 'err'; ?>" for="">
+                    <span class="select-icon"></span>
+                    <select name="brand_id" id="">
+                        <option value="0" <?php if (getFormData('brand_id') == 0) echo 'selected'; ?>>
+                            選択してください
                         </option>
-                    <?php endforeach; ?>
-                </select>
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('brand'); ?>
-            </div>
-            サイズ <span class="msg-required">必須</span>
-            <label for="" style="width: 30%;">
-                <input type="text" name="size" class="<?php if(!empty(getErrMsg('size'))) echo 'err'; ?>" value="<?php echo getFormData('size'); ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('size'); ?>
-            </div>
-            詳細 <span class="msg-required">必須</span>
-            <label for="">
-                <textarea name="comment" rows="12" class="js-counter <?php if(!empty(getErrMsg('comment'))) echo 'err'; ?>"><?php echo reverseNl2br(getFormData('comment')); ?></textarea>
-                <div id="comment-msgArea">
-                    <div class="area-msg">
-                        <?php echo getErrMsg('comment'); ?>
+                        <?php foreach ($brandData as $key => $value) : ?>
+                            <option value="<?php echo $value['id']; ?>" <?php if (getFormData('brand_id') == $value['id']) echo 'selected'; ?>>
+                                <?php echo $value['name']; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('brand'); ?>
+                </div>
+
+                サイズ <span class="msg-required">必須</span>
+                <label class="<?php if(!empty(getErrMsg('size'))) echo 'err'; ?>" for="" style="width: 30%;">
+                    <input type="text" name="size" value="<?php echo getFormData('size'); ?>">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('size'); ?>
+                </div>
+
+                詳細 <span class="msg-required">必須</span>
+                <label for="">
+                    <textarea name="comment" rows="12" class="js-counter <?php if(!empty(getErrMsg('comment'))) echo 'err'; ?>"><?php echo reverseNl2br(getFormData('comment')); ?></textarea>
+                </label>
+                <div class="counter"style="text-align: right;">
+                    <span class="js-show-counter"><?php echo !empty(getFormData('comment')) ? mb_strlen(str_replace("\r\n", '', reverseNl2br(getFormData('comment')))) : '0'; ?></span>/200
                     </div>
-                    <div class="counter">
-                        <span class="js-show-counter"><?php echo !empty(getFormData('comment')) ? mb_strlen(str_replace("\r\n", '', reverseNl2br(getFormData('comment')))) : '0'; ?></span>/200
+                <div class="area-msg">
+                    <?php echo getErrMsg('comment'); ?>
+                </div>
+
+                金額 <span class="msg-required">必須</span>
+                <label for="" class="<?php if(!empty(getErrMsg('price'))) echo 'err'; ?>" style="width: 30%;">
+                    <input type="text" name="price" value="<?php echo (!empty(getFormData('price'))) ? getFormData('price') : 0; ?>">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('price'); ?>
+                </div>
+                送料 <span class="msg-required">必須</span>
+                <label for="" class="selectbox <?php if(!empty(getErrMsg('postage'))) echo 'err'; ?>">
+                    <span class="select-icon"></span>
+                    <select name="postage_flg" id="">
+                        <option value="0" <?php if ((int) getFormData('postage_flg') === 0) echo 'selected'; ?>>
+                            出品者負担
+                        </option>
+                        <option value="1" <?php if ((int) getFormData('postage_flg') === 1) echo 'selected'; ?>>
+                            購入者負担
+                        </option>
+                    </select>
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('postage'); ?>
+                </div>
+
+                <div style="overflow: hidden;">
+                    <div class="imgDrop-container">
+                        画像1 <span class="msg-required">必須</span>
+                        <label class="area-drop js-dropContainer <?php if(!empty(getErrMsg('pic1'))) echo 'err'; ?>">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
+                            <input type="file" name="pic1" class="file-input">
+                            <img src="<?php echo getFormData('pic1'); ?>" alt="" class="prev-img">
+                            画像をドラッグ&ドロップ
+                        </label>
+                    </div>
+                    <div class="imgDrop-container">
+                        画像2
+                        <label class="area-drop js-dropContainer">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
+                            <input type="file" name="pic2" class="file-input">
+                            <img src="<?php echo getFormData('pic2'); ?>" alt="" class="prev-img">
+                            画像をドラッグ&ドロップ
+                        </label>
+                    </div>
+                    <div class="imgDrop-container">
+                        画像3
+                        <label class="area-drop js-dropContainer">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
+                            <input type="file" name="pic3" class="file-input">
+                            <img src="<?php echo getFormData('pic3'); ?>" alt="" class="prev-img">
+                            画像をドラッグ&ドロップ
+                        </label>
                     </div>
                 </div>
-            </label>
-            金額 <span class="msg-required">必須</span>
-            <label for="" style="width: 30%;">
-                <input type="text" name="price" class="<?php if(!empty(getErrMsg('price'))) echo 'err'; ?>" value="<?php echo (!empty(getFormData('price'))) ? getFormData('price') : 0; ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('price'); ?>
-            </div>
-            送料 <span class="msg-required">必須</span>
-            <label for="">
-                <select name="postage_flg" id="">
-                    <option value="0" <?php if ((int) getFormData('postage_flg') === 0) echo 'selected'; ?>>
-                        出品者負担
-                    </option>
-                    <option value="1" <?php if ((int) getFormData('postage_flg') === 1) echo 'selected'; ?>>
-                        購入者負担
-                    </option>
-                </select>
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('postage'); ?>
-            </div>
-            <div id="img-regist">
-                <div class="img-panel">
-                    画像1 <span class="msg-required">必須</span>
-                    <label class="drop-container js-dropContainer <?php echo (empty(getErrMsg('pic1'))) ? 'drop-container' : 'err'; ?>"">
-                        <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
-                        <input type="file" name="pic1" class="file-input">
-                        <img src="<?php echo getFormData('pic1'); ?>" alt="" class="prev-img">
-                        画像をドラッグ&ドロップ
-                    </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('pic1'); ?>
                 </div>
-                <div class="img-panel">
-                    画像2
-                    <label class="drop-container js-dropContainer">
-                        <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
-                        <input type="file" name="pic2" class="file-input">
-                        <img src="<?php echo getFormData('pic2'); ?>" alt="" class="prev-img">
-                        画像をドラッグ&ドロップ
-                    </label>
+                <div class="btn-container">
+                    <input type="submit" name="submit" value="<?php echo (!empty($editFlg)) ? '編集する' : '出品する'; ?>" class="btn">
                 </div>
-                <div class="img-panel">
-                    画像3
-                    <label class="drop-container js-dropContainer">
-                        <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
-                        <input type="file" name="pic3" class="file-input">
-                        <img src="<?php echo getFormData('pic3'); ?>" alt="" class="prev-img">
-                        画像をドラッグ&ドロップ
-                    </label>
-                </div>
-            </div>
-            <div class="area-msg">
-                <?php echo getErrMsg('pic1'); ?>
-            </div>
-            <div class="btn">
-                <input type="submit" name="submit" value="<?php echo (!empty($editFlg)) ? '編集する' : '出品する'; ?>">
-            </div>
-            <a href="mypage.php">&lt&lt マイページへ戻る</a>
-        </form>
+                <a href="mypage.php">&lt&lt マイページへ戻る</a>
+            </form>
+        </section>
+        <?php
+        require('sidebar.php');
+        ?>
     </div>
     <?php
-    require('sidebar.php');
+    require('footer.php')
     ?>
-</div>
-<?php
-require('footer.php')
-?>

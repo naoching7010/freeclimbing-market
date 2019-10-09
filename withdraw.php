@@ -45,23 +45,24 @@ debug('画面表示処理終了<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 $title = '退会';
 require('head.php');
 ?>
-<?php
-require('header.php');
-?>
-<div class="contents site-width">
-    <section id="withdraw">
-        <h2 class="title">退会</h2>
-        <form action="" method="post" class="form">
-            <div class="area-msg">
-                <?php echo getErrMsg('common'); ?>
-            </div>
-            <div class="btn">
-                <input type="submit" name="submit" value="退会する" style="margin: 40px 0;" class="js-show-alert">
-            </div>
-            <a href="mypage.php">&lt&lt マイページへ戻る</a>
-        </form>
-    </section>
-</div>
-<?php
-require('footer.php')
-?>
+<body class="page-1colum">
+    <?php
+    require('header.php');
+    ?>
+    <div id="contents" class="site-width">
+        <section id="main">
+            <form action="" method="post" class="form">
+                <h2 class="page-title">退会</h2>
+                <div class="area-msg">
+                    <?php echo getErrMsg('common'); ?>
+                </div>
+                <div class="btn-container">
+                    <input type="submit" name="submit" value="退会する" style="margin: 40px 0;" class="btn js-show-alert">
+                </div>
+                <a href="mypage.php">&lt&lt マイページへ戻る</a>
+            </form>
+        </section>
+    </div>
+    <?php
+    require('footer.php')
+    ?>

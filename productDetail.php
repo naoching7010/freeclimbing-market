@@ -93,33 +93,33 @@ debug('画面表示処理終了<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 $title = '商品詳細';
 require('head.php');
 ?>
-<?php
-require('header.php');
-?>
-<div class="contents site-width">
-    <section id="product-detail">
-        <div id="product-detail-topwrapper">
-            <div id="product-title">
+    <body class="page-productDetail page-1colum">
+    <?php
+    require('header.php');
+    ?>
+    <div id="contents" class="site-width">
+        <section id="main">
+            <div class="product-title">
                 <?php echo sanitize($productData['p_name']);
                 ?>
             </div>
-            <div id="product-img">
-                <div id="main-img" class="js-switch-mainimg">
+            <div class="product-img-container">
+                <div class="img-main js-switch-mainimg">
                     <img src="<?php echo sanitize(showImg($productData['pic1'])); ?>" alt="" class="prev-mainimg">
                 </div>
-                <div id="sub-img">
-                    <div class="img-panel js-switch-subimg">
+                <div class="img-sub">
+                    <div class="panel js-switch-subimg">
                         <img src="<?php echo sanitize(showImg($productData['pic1'])); ?>" alt="" class="prev-subimg">
                     </div>
-                    <div class="img-panel js-switch-subimg">
+                    <div class="panel js-switch-subimg">
                         <img src="<?php echo sanitize(showImg($productData['pic2'])); ?>" alt="" class="prev-subimg">
                     </div>
-                    <div class="img-panel js-switch-subimg">
+                    <div class="panel js-switch-subimg">
                         <img src="<?php echo sanitize(showImg($productData['pic3'])); ?>" alt="" class="prev-subimg">
                     </div>
                 </div>
             </div>
-            <div id="product-info">
+            <div class="product-info-container">
                 <table>
                     <tr>
                         <th>出品者</th>
@@ -146,66 +146,64 @@ require('header.php');
                     </tr>
                 </table>
             </div>
-        </div>
-        <div id="product-discription">
-            <p>
-                <?php echo sanitize($productData['comment']); ?>
-            </p>
-        </div>
-        <div id="product-buy">
-            <p>￥<?php echo sanitize(number_format($productData['price'])); ?></p>
-            <div id="like">
-                <i id="js-like-product" class="fas fa-heart fa-3x fav js-like-animation <?php if (isLike($p_id, $_SESSION['user_id'])) echo 'active'; ?>" data-productid="<?php echo $p_id; ?>"></i>
-                <i class="fas fa-heart fa-3x fav2 js-like-animation2 <?php if (isLike($p_id, $_SESSION['user_id'])) echo 'active'; ?>"></i>
+            <div class="productDetail-comment">
+                <p>
+                    <?php echo sanitize($productData['comment']); ?>
+                </p>
             </div>
-            <form action="" method="post" class="btn" style="clear: left;">
-                <input type="submit" name="buy" value="購入する" style="height: 60px; <?php if ($productData['sale_user'] === $_SESSION['user_id']) echo 'display: none;' ?>">
-            </form>
-            <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">&lt 前のページへ戻る</a>
-        </div>
-        <div id="trade-comment-wrapper">
-            <div id="trade-comment" style="height: 250px;">
-                <?php
-                if (!empty($tradeMsgData)) {
-                    foreach ($tradeMsgData as $key => $val) {
-                        if ($val['from_user'] !== $u_id) {
-                            ?>
-                            <div class="msg-left">
-                                <img src="<?php echo showProfImg(sanitize($val['pic'])); ?>" alt=""><br>
-                                <p>
-                                    <?php echo sanitize($val['comment']); ?>
-                                </p>
-                                <span><?php echo sanitize($val['user_name']) ?></span>
-                            </div>
-                        <?php } else { ?>
-                            <div class="msg-right">
-                                <img src="<?php echo showProfImg(sanitize($val['pic'])); ?>" alt="" style="float: right;">
-                                <p>
-                                    <?php echo sanitize($val['comment']); ?>
-                                </p>
-                                <span><?php echo sanitize($val['user_name']) ?></span>
-                            </div>
+            <div class="product-buy">
+                <p class="item-left">￥<?php echo sanitize(number_format($productData['price'])); ?></p>
+                <div class="item-right">
+                    <i id="js-like-product" class="fas fa-heart fa-3x fav js-like-animation <?php if (isLike($p_id, $_SESSION['user_id'])) echo 'active'; ?>" data-productid="<?php echo $p_id; ?>"></i>
+                <i class="fas fa-heart fa-3x fav2 js-like-animation2 <?php if (isLike($p_id, $_SESSION['user_id'])) echo 'active'; ?>"></i>
+                </div>
+                <form action="" method="post" class="btn-container" style="clear: left;">
+                    <input class="btn" type="submit" name="buy" value="購入する" style="height: 60px; <?php if ($productData['sale_user'] === $_SESSION['user_id']) echo 'display: none;' ?>">
+                </form>
+                <a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">&lt 前のページへ戻る</a>
+            </div>
+            <div class="msg-container">
+                <div class="msg" style="height: 250px;">
                     <?php
+                    if (!empty($tradeMsgData)) {
+                        foreach ($tradeMsgData as $key => $val) {
+                            if ($val['from_user'] !== $u_id) {
+                    ?>
+                                <div class="msg-left">
+                                    <img src="<?php echo showProfImg(sanitize($val['pic'])); ?>" alt=""><br>
+                                    <p>
+                                        <?php echo sanitize($val['comment']); ?>
+                                    </p>
+                                    <span><?php echo sanitize($val['user_name']) ?></span>
+                                </div>
+                            <?php } else { ?>
+                                <div class="msg-right">
+                                    <img src="<?php echo showProfImg(sanitize($val['pic'])); ?>" alt="" style="float: right;">
+                                    <p>
+                                        <?php echo sanitize($val['comment']); ?>
+                                    </p>
+                                    <span><?php echo sanitize($val['user_name']) ?></span>
+                                </div>
+                            <?php
                             }
                         }
                     } else { ?>
                     <div>
                         <p style="text-align: center; margin-top: 50px; font-size: 20px;">コメントがありません</p>
                     </div>
-                <?php } ?>
-            </div>
-            <form action="" method="post" class="form send-msg" style="padding: 0;">
-                <label for="">
-                    <textarea name="comment" class="auto-resize js-form-required" placeholder="コメントを入力"></textarea>
-                </label>
-                <div class="btn" style="width: 300px; margin: 30px auto;">
-                    <input type="submit" name="submit" value="コメントする" class="js-disabled-submit" disabled="disabled">
+                    <?php } ?>
                 </div>
-            </form>
-        </div>
-
-    </section>
-</div>
-<?php
-require('footer.php')
-?>
+                <form action="" method="post" class="form send-msg">
+                    <label for="">
+                        <textarea name="comment" class="auto-resize js-form-required" placeholder="コメントを入力"></textarea>
+                    </label>
+                    <div class="btn-container" style="width: 300px; margin: 30px auto;">
+                        <input type="submit" name="submit" value="コメントする" class="btn js-disabled-submit" disabled="disabled">
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+    <?php
+    require('footer.php')
+    ?>

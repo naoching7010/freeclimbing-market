@@ -69,45 +69,48 @@ debug('画面表示処理終了<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 $title = "ログイン";
 require('head.php');
 ?>
-<?php
-require('header.php');
-?>
-<p class="msg-success js-fade-msg" style="display: none;">
+<body class="page-1colum">
     <?php
-    getSessionFlash('msg_success');
+    require('header.php');
     ?>
-</p>
-<div class="contents site-width">
-    <section id="login">
-        <h2 class="title">ログイン</h2>
-        <form action="" method="post" class="form">
-            <div class="area-msg">
-                <?php echo getErrMsg('common'); ?>
+    <p class="msg-success js-fade-msg" style="display: none;">
+        <?php
+        getSessionFlash('msg_success');
+        ?>
+    </p>
+    <div id="contents" class="site-width">
+        <section id="main">
+            <div class="form-container">
+                <form action="" method="post" class="form">
+                    <h2 class="page-title">ログイン</h2>
+                    <div class="area-msg">
+                        <?php echo getErrMsg('common'); ?>
+                    </div>
+                    メールアドレス
+                    <label for="" class="<?php if (!empty(getErrMsg('email'))) echo 'err'; ?>">
+                        <input type="text" name="email" class="js-form-required" value="<?php echo getFormData('email'); ?>">
+                    </label>
+                    <div class="area-msg">
+                        <?php echo getErrMsg('email'); ?>
+                    </div>
+                    パスワード
+                    <label for="" class="<?php if (!empty(getErrMsg('pass'))) echo 'err'; ?>">
+                        <input type="password" name="pass" class="js-form-required <?php if (!empty(getErrMsg('pass'))) echo 'err'; ?>" value="<?php echo getFormData('pass'); ?>" autocomplete="off">
+                    </label>
+                    <div class="area-msg">
+                        <?php echo getErrMsg('pass'); ?>
+                    </div>
+                    <label>
+                        <input type="checkbox" name="checkbox" value="1">ログイン状態を保持する
+                    </label>
+                    <div class="btn-container">
+                        <input type="submit" name="submit" value="ログイン" class="btn js-disabled-submit" disabled="disabled">
+                    </div>
+                    パスワードを忘れた方は<a href="passRemindSend.php" style="color: #4EA1E8;">コチラ</a>
+                </form>
             </div>
-            メールアドレス
-            <label for="">
-                <input type="text" name="email" class="js-form-required <?php if (!empty(getErrMsg('email'))) echo 'err'; ?>" value="<?php echo getFormData('email'); ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('email'); ?>
-            </div>
-            パスワード
-            <label for="">
-                <input type="password" name="pass" class="js-form-required <?php if (!empty(getErrMsg('pass'))) echo 'err'; ?>" value="<?php echo getFormData('pass'); ?>" autocomplete="off">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('pass'); ?>
-            </div>
-            <label id="login-retention" style="margin-top: 10px;">
-                <input type="checkbox" name="checkbox" value="1">ログイン状態を保持する
-            </label>
-            <div class="btn">
-                <input type="submit" name="submit" value="ログイン" class="js-disabled-submit" disabled="disabled">
-            </div>
-            パスワードを忘れた方は<a href="passRemindSend.php" style="color: #4EA1E8;">コチラ</a>
-        </form>
-    </section>
-</div>
-<?php
-require('footer.php')
-?>
+        </section>
+    </div>
+    <?php
+    require('footer.php')
+    ?>

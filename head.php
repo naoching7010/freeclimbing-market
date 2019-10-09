@@ -8,5 +8,3 @@
     <script src="https://kit.fontawesome.com/1e19a0aab7.js" crossorigin="anonymous"></script>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
-
-<body>

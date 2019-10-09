@@ -80,33 +80,34 @@ debug('画面処理終了<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 $title = '認証キー発行';
 require('head.php');
 ?>
-<?php
-require('header.php');
-?>
-<div class="contents site-width">
-    <section id="login">
-        <h2 class="title">認証キー発行</h2>
-        <form action="" method="post" class="form">
-            <p>
-                ご入力されたメールアドレス宛にパスワード再発行のための認証キーをお送りします。<br>
-            </p>
-            <div class="area-msg">
-                <?php echo getErrMsg('common'); ?>
-            </div>
-            メールアドレス
-            <label for="">
-                <input type="text" name="email" value="<?php echo getFormData('email'); ?>" class="js-form-required <?php if (!empty(getErrMsg('email'))) echo 'err'; ?>">
-            </label>
-            <div class="area-msg">
-                <?php echo getErrMsg('email'); ?>
-            </div>
-            <div class="btn">
-                <input type="submit" name="submit" value="送信" class="js-disabled-submit" disabled="disabled">
-            </div>
-            <a href="login.php">&lt&lt ログイン画面に戻る</a>
-        </form>
-    </section>
-</div>
-<?php
-require('footer.php')
-?>
+<body class="page-1colum">
+    <?php
+    require('header.php');
+    ?>
+    <div id="contents" class="site-width">
+        <section id="main">
+            <form action="" method="post" class="form">
+                <h2 class="page-title">認証キー発行</h2>
+                <p>
+                    ご入力されたメールアドレス宛にパスワード再発行のための認証キーをお送りします。<br>
+                </p>
+                <div class="area-msg">
+                    <?php echo getErrMsg('common'); ?>
+                </div>
+                メールアドレス
+                <label for="" class="<?php if (!empty(getErrMsg('email'))) echo 'err'; ?>">
+                    <input type="text" name="email" value="<?php echo getFormData('email'); ?>" class="js-form-required">
+                </label>
+                <div class="area-msg">
+                    <?php echo getErrMsg('email'); ?>
+                </div>
+                <div class="btn-container">
+                    <input type="submit" name="submit" value="送信" class="btn js-disabled-submit" disabled="disabled">
+                </div>
+                <a href="login.php">&lt&lt ログイン画面に戻る</a>
+            </form>
+        </section>
+    </div>
+    <?php
+    require('footer.php')
+    ?>
