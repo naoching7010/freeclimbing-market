@@ -83,8 +83,8 @@ require('head.php');
         ?>
     </p>
     <div id="contents" class="site-width">
-        <h1 class="page-title" style="border: none;">掲示板</h1>
         <section id="main">
+            <h1 class="page-title" style="border: none;">掲示板</h1>
             <div class="trade-info">
                 <div class="trade-partner">
                     <h2 class="trade-title">取引相手</h2>
@@ -101,56 +101,56 @@ require('head.php');
                         echo 'TEL：'.sanitize($partnerUserData['tel']);
                         ?> 
                     </div>
-                    <div class="trade-product">
-                        <h2 class="trade-title">取引商品</h2>
-                        <div class="product-img">
-                            <img class="product" src="<?php echo sanitize($productData['pic1']); ?>" alt="">
-                        </div>
-                        <div class="product-info">
-                            <?php 
-                            echo sanitize($productData['p_name']).'<br>';
-                            echo '￥'.number_format(sanitize($productData['price'])).'<br>';
-                            echo '送料：';
-                            echo judgPostAge(sanitize($productData['postage_flg'])).'<br>';
-                            echo '取引開始日：'.date('Y-m-d', strtotime(sanitize($bordData['create_date'])));
-                            ?>
-                        </div>
-                    </div>
                 </div>
-                <div class="msg-container">
-                    <div class="msg">
+                <div class="trade-product">
+                    <h2 class="trade-title">取引商品</h2>
+                    <div class="product-img">
+                        <img class="product" src="<?php echo sanitize($productData['pic1']); ?>" alt="">
+                    </div>
+                    <div class="product-info">
                         <?php 
-                        if(!empty($msgData)){
-                            foreach ($msgData as $key => $val) {
-                                if($val['from_user'] !== $_SESSION['user_id']){
+                        echo sanitize($productData['p_name']).'<br>';
+                        echo '￥'.number_format(sanitize($productData['price'])).'<br>';
+                        echo '送料：';
+                        echo judgPostAge(sanitize($productData['postage_flg'])).'<br>';
+                        echo '取引開始日：'.date('Y-m-d', strtotime(sanitize($bordData['create_date'])));
                         ?>
-                            <div class="msg-left">
-                                <img src="<?php echo showProfImg(sanitize($partnerUserData['pic'])); ?>" alt="">
-                                <p>
-                                    <?php echo sanitize($val['msg']); ?>
-                                </p>
-                            </div>
-                        <?php }else{ ?>
-                            <div class="msg-right">
-                                <img src="<?php echo showProfImg(sanitize($myUserData['pic'])); ?>" alt="">
-                                <p>
-                                    <?php echo sanitize($val['msg']); ?>
-                                </p>
-                            </div>
-                        <?php }
-                                }
-                        }else{ ?>
-                            <div>
-                                <p style="text-align: center; margin-top: 50px; font-size: 20px;">メッセージがありません</p>
-                            </div>
-                        <?php } ?>
                     </div>
-                    <form action="" method="post" class="send-msg btn-container">
-                        <textarea name="msg" class="auto-resize js-form-required" placeholder="メッセージを入力"></textarea>
-                        <input type="submit" name="submit" value="送信" style="width: 150px; float: right;" class="btn js-disabled-submit" disabled="disabled">
-                    </form>
-                    <a href="mypage.html">&lt マイページへ戻る</a>
                 </div>
+            </div>
+            <div class="msg-container">
+                <div class="msg">
+                    <?php 
+                    if(!empty($msgData)){
+                        foreach ($msgData as $key => $val) {
+                            if($val['from_user'] !== $_SESSION['user_id']){
+                    ?>
+                        <div class="msg-left">
+                            <img src="<?php echo showProfImg(sanitize($partnerUserData['pic'])); ?>" alt="">
+                            <p>
+                                <?php echo sanitize($val['msg']); ?>
+                            </p>
+                        </div>
+                    <?php }else{ ?>
+                        <div class="msg-right">
+                            <img src="<?php echo showProfImg(sanitize($myUserData['pic'])); ?>" alt="">
+                            <p>
+                                <?php echo sanitize($val['msg']); ?>
+                            </p>
+                        </div>
+                    <?php }
+                            }
+                    }else{ ?>
+                        <div>
+                            <p style="text-align: center; margin-top: 50px; font-size: 20px;">メッセージがありません</p>
+                        </div>
+                    <?php } ?>
+                </div>
+                <form action="" method="post" class="send-msg btn-container">
+                    <textarea name="msg" class="auto-resize js-form-required" placeholder="メッセージを入力"></textarea>
+                    <input type="submit" name="submit" value="送信" style="width: 150px; float: right;" class="btn js-disabled-submit" disabled="disabled">
+                </form>
+                <a href="mypage.html">&lt マイページへ戻る</a>
             </div>
         </section>
     </div>
